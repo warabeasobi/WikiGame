@@ -252,6 +252,20 @@ python3 -m http.server 8080      # or: npm run serve
 Any static file server works. A server is required (ES modules + service worker do not work
 from `file://`).
 
+### Scripts
+
+| Command | What it does |
+| --- | --- |
+| `npm run serve` | Static server on :8080 |
+| `npm test` | Unit + integration tests (live Wikipedia API) |
+| `npm test:ui` | Full jsdom UI suite (needs `npm run serve:test` in another shell) |
+| `npm test:all` | Both suites |
+| `npm run smoke` | Quick API smoke test |
+| `npm run i18n` | Translation coverage report |
+| `npm run pages` | Build + verify the `docs/` folder for GitHub Pages |
+| `npm run data` | Rebuild popularity pools from the Pageviews API |
+| `npm run icons` | Regenerate PNG icons |
+
 Regenerate the popularity pools (optional, they are committed):
 
 ```bash
