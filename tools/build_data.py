@@ -116,6 +116,7 @@ def main():
         print(f"[{lang}]")
         arts = build_lang(lang) or []
         index[lang] = len(arts)
+        time.sleep(3)  # ponytail: Wikimedia 429s on back-to-back projects; per-project pause is enough
     with open(os.path.join(DATA, "index.json"), "w", encoding="utf-8") as fh:
         json.dump({"languages": index, "generated": datetime.now(timezone.utc).isoformat()}, fh, indent=2)
     print("done:", index)
