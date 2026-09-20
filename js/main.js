@@ -112,6 +112,11 @@ if (typeof document !== 'undefined' && !window.__WSR_NO_AUTOBOOT__) {
   const start = () => {
     boot().catch((err) => {
       console.error('[boot] failed', err);
+      // Never leave a blank screen: boot() removes the splash before it can
+      // throw, but the body is still hidden until is-booting is cleared.
+      document.body.classList.remove('is-booting');
+      const splash = document.getElementById('boot');
+      if (splash) splash.remove();
       const root = document.getElementById('app');
       if (root) {
         root.innerHTML = '';

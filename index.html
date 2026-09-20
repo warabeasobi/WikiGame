@@ -48,5 +48,18 @@
 </noscript>
 
 <script type="module" src="js/main.js"></script>
+<script>
+  // Safety net: `is-booting` hides the body until boot() finishes, and the
+  // splash only leaves if boot() runs. If a module fails to load, neither
+  // happens and the user stares at a blank page. Reveal something instead.
+  setTimeout(function () {
+    var splash = document.getElementById('boot');
+    if (splash && splash.isConnected) {
+      document.body.classList.remove('is-booting');
+      splash.querySelector('p').textContent =
+        'Still starting up… check your connection, then reload.';
+    }
+  }, 8000);
+</script>
 </body>
 </html>
