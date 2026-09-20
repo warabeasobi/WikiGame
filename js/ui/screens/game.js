@@ -234,7 +234,7 @@ registerScreen('game', (ctx) => {
       el('button', {
         class: 'route-panel__target-title',
         type: 'button',
-        text: state.target || '—',
+        text: state.target || '-',
         onClick: () => inspectArticle(state.target),
       }),
       el('div', { class: 'row row--wrap' }, [

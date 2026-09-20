@@ -27,13 +27,13 @@ export function screenList() {
 
 /** Screens reachable from the bottom navigation. */
 export const NAV_ITEMS = [
-  { id: 'home', labelKey: 'nav.home', icon: '🏠' },
-  { id: 'play', labelKey: 'nav.play', icon: '🎮' },
-  { id: 'daily', labelKey: 'nav.daily', icon: '📅' },
-  { id: 'stats', labelKey: 'nav.stats', icon: '📊' },
-  { id: 'achievements', labelKey: 'nav.achievements', icon: '🏆' },
-  { id: 'profile', labelKey: 'nav.profile', icon: '🧑' },
-  { id: 'settings', labelKey: 'nav.settings', icon: '⚙️' },
+  { id: 'home', labelKey: 'nav.home' },
+  { id: 'play', labelKey: 'nav.play' },
+  { id: 'daily', labelKey: 'nav.daily' },
+  { id: 'stats', labelKey: 'nav.stats' },
+  { id: 'achievements', labelKey: 'nav.achievements' },
+  { id: 'profile', labelKey: 'nav.profile' },
+  { id: 'settings', labelKey: 'nav.settings' },
 ];
 
 /** Screens that are hidden from the bottom nav but still routable. */

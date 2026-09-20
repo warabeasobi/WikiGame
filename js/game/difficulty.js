@@ -113,7 +113,7 @@ export const MODIFIERS = [
   { id: 'half-time', label: 'Half time', desc: 'The countdown is halved.', icon: '⏳', apply: (o) => ({ ...o, timeScale: 0.5 }) },
   { id: 'one-freeze', label: 'Single freeze', desc: 'Time freeze can only be used once.', icon: '🧊', apply: (o) => ({ ...o, freezeUses: 1 }) },
   { id: 'blind-links', label: 'Blind links', desc: 'Link previews are disabled.', icon: '🙈', apply: (o) => ({ ...o, previewsDisabled: true }) },
-  { id: 'long-road', label: 'Long road', desc: 'Par is raised — expect a longer route.', icon: '🛣️', apply: (o) => ({ ...o, parClicksBonus: 3 }) },
+  { id: 'long-road', label: 'Long road', desc: 'Par is raised. Expect a longer route.', icon: '🛣️', apply: (o) => ({ ...o, parClicksBonus: 3 }) },
 ];
 
 export function rollModifiers(difficultyId, rand = Math.random) {

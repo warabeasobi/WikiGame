@@ -231,11 +231,11 @@ registerScreen('play', (ctx) => {
       panel.append(el('div', { class: 'endless-intro' }, [
         el('p', { text: t('endless.desc') }),
         el('div', { class: 'endless-steps' }, [
-          el('span', { class: 'endless-step', text: '1–2 · 🌱' }),
-          el('span', { class: 'endless-step', text: '3–4 · 🎯' }),
-          el('span', { class: 'endless-step', text: '5–7 · 🔥' }),
-          el('span', { class: 'endless-step', text: '8–10 · 💀' }),
-          el('span', { class: 'endless-step', text: '11+ · 🌀' }),
+          el('span', { class: 'endless-step', text: '1-2' }),
+          el('span', { class: 'endless-step', text: '3-4' }),
+          el('span', { class: 'endless-step', text: '5-7' }),
+          el('span', { class: 'endless-step', text: '8-10' }),
+          el('span', { class: 'endless-step', text: '11+' }),
         ]),
       ]));
     } else if (mode === 'sandbox') {
@@ -288,9 +288,9 @@ registerScreen('play', (ctx) => {
       title: t('common.personalBest'),
       body: [
         el('div', { class: 'grid grid--tiles' }, [
-          statTile({ label: t('stats.fastestRun'), value: pb && pb.timeMs ? `${(pb.timeMs / 1000).toFixed(2)}s` : '—', icon: '⚡', small: true }),
-          statTile({ label: t('stats.fewestClicks'), value: pb ? String(pb.clicks) : '—', icon: '🖱️', small: true }),
-          statTile({ label: t('stats.bestScore'), value: pb && pb.score ? formatNumber(pb.score, uiLocale()) : '—', icon: '🏅', small: true }),
+          statTile({ label: t('stats.fastestRun'), value: pb && pb.timeMs ? `${(pb.timeMs / 1000).toFixed(2)}s` : '-', icon: '⚡', small: true }),
+          statTile({ label: t('stats.fewestClicks'), value: pb ? String(pb.clicks) : '-', icon: '🖱️', small: true }),
+          statTile({ label: t('stats.bestScore'), value: pb && pb.score ? formatNumber(pb.score, uiLocale()) : '-', icon: '🏅', small: true }),
           statTile({ label: t('stats.runs'), value: String((Statistics.all.perLanguage[lang] || {}).runs || 0), icon: '🎮', small: true }),
         ]),
         el('p', { class: 'field__hint', text: `${t('common.language')}: ${(LANGUAGES.find((l) => l.code === lang) || {}).label} · ${t('common.difficulty')}: ${diffCfg.label}` }),

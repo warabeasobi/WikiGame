@@ -40,22 +40,30 @@ registerScreen('stats', (ctx) => {
       statTile({ label: t('stats.runs'), value: formatNumber(s.totalRuns, locale), icon: '🎮' }),
       statTile({ label: t('stats.completed'), value: formatNumber(s.completedRuns, locale), icon: '✅', tone: 'success' }),
       statTile({ label: t('stats.failed'), value: formatNumber(s.failedRuns, locale), icon: '❌', tone: 'danger' }),
-      statTile({ label: t('stats.completionRate'), value: `${Math.round(s.completionRate * 100)}%`, icon: '📈' }),
-      statTile({ label: t('stats.fastestRun'), value: s.best.timeMs ? formatTime(s.best.timeMs) : '—', icon: '⚡', tone: 'accent' }),
-      statTile({ label: t('stats.fewestClicks'), value: s.best.clicks !== null ? String(s.best.clicks) : '—', icon: '🖱️' }),
-      statTile({ label: t('stats.bestScore'), value: s.best.score ? formatNumber(s.best.score, locale) : '—', icon: '🏅', tone: 'accent' }),
-      statTile({ label: t('stats.avgTime'), value: s.completedRuns ? formatTime(s.averageTimeMs) : '—', icon: '⏱' }),
-      statTile({ label: t('stats.avgClicks'), value: s.completedRuns ? s.averageClicks.toFixed(1) : '—', icon: '📉' }),
-      statTile({ label: t('stats.longestRoute'), value: String(s.extremes.longestRoute || 0), icon: '🛣️' }),
-      statTile({ label: t('stats.shortestRoute'), value: s.extremes.shortestRoute !== null ? String(s.extremes.shortestRoute) : '—', icon: '🎯' }),
+      statTile({ label: t('stats.fastestRun'), value: s.best.timeMs ? formatTime(s.best.timeMs) : '-', icon: '⚡', tone: 'accent' }),
+      statTile({ label: t('stats.fewestClicks'), value: s.best.clicks !== null ? String(s.best.clicks) : '-', icon: '🖱️' }),
+      statTile({ label: t('stats.bestScore'), value: s.best.score ? formatNumber(s.best.score, locale) : '-', icon: '🏅', tone: 'accent' }),
       statTile({ label: t('stats.currentStreak'), value: String(s.streak.current), icon: '🔥', tone: s.streak.current > 2 ? 'accent' : null }),
-      statTile({ label: t('stats.longestStreak'), value: String(s.streak.longest), icon: '🏆' }),
-      statTile({ label: t('stats.totalPlayTime'), value: formatDurationWords(s.totalPlayMs), icon: '⌛' }),
-      statTile({ label: t('stats.articlesVisited'), value: formatNumber(s.runs.reduce((a, r) => a + r.route.length, 0), locale), icon: '📄' }),
       statTile({ label: t('stats.uniqueArticles'), value: formatNumber(s.totalUniqueArticles, locale), icon: '📚' }),
-      statTile({ label: t('stats.languagesPlayed'), value: String(s.languagesPlayed.length), icon: '🌍' }),
-      statTile({ label: t('stats.runsThisWeek'), value: String(s.runsThisWeek), icon: '📆' }),
+      statTile({ label: t('stats.totalPlayTime'), value: formatDurationWords(s.totalPlayMs), icon: '⌛' }),
     ]));
+
+    /* Secondary numbers: a definition list, not another grid of tiles. */
+    const secondary = [
+      [t('stats.completionRate'), `${Math.round(s.completionRate * 100)}%`],
+      [t('stats.avgTime'), s.completedRuns ? formatTime(s.averageTimeMs) : '-'],
+      [t('stats.avgClicks'), s.completedRuns ? s.averageClicks.toFixed(1) : '-'],
+      [t('stats.longestRoute'), String(s.extremes.longestRoute || 0)],
+      [t('stats.shortestRoute'), s.extremes.shortestRoute !== null ? String(s.extremes.shortestRoute) : '-'],
+      [t('stats.longestStreak'), String(s.streak.longest)],
+      [t('stats.articlesVisited'), formatNumber(s.runs.reduce((a, r) => a + r.route.length, 0), locale)],
+      [t('stats.languagesPlayed'), String(s.languagesPlayed.length)],
+      [t('stats.runsThisWeek'), String(s.runsThisWeek)],
+    ];
+    root.appendChild(el('dl', { class: 'facts' }, secondary.flatMap(([label, value]) => [
+      el('dt', { class: 'facts__key', text: label }),
+      el('dd', { class: 'facts__val', text: value }),
+    ])));
 
     /* Trend chart --------------------------------------------------- */
     const metricOptions = [
@@ -129,11 +137,11 @@ registerScreen('stats', (ctx) => {
       el('span', { class: 'mode-stat__runs', text: `${v.runs} ${t('stats.runs')}` }),
       el('span', { class: 'mode-stat__best' }, [
         el('span', { class: 'muted', text: t('common.best') }),
-        el('strong', { text: v.bestTimeMs ? formatTime(v.bestTimeMs) : '—' }),
+        el('strong', { text: v.bestTimeMs ? formatTime(v.bestTimeMs) : '-' }),
       ]),
       el('span', { class: 'mode-stat__score' }, [
         el('span', { class: 'muted', text: t('common.score') }),
-        el('strong', { text: v.bestScore ? formatNumber(v.bestScore, locale) : '—' }),
+        el('strong', { text: v.bestScore ? formatNumber(v.bestScore, locale) : '-' }),
       ]),
       progressBar(v.runs / Math.max(1, s.totalRuns), { label: '', value: `${Math.round((v.completed / Math.max(1, v.runs)) * 100)}%` }),
     ]));

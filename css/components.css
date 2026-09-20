@@ -215,6 +215,33 @@ button.stat-tile { cursor: pointer; }
 @keyframes shimmer { to { background-position: -200% 0; } }
 
 /* ------------------------------------------------------------------ */
+/* Definition list: many facts, no tile wall.                          */
+/* ------------------------------------------------------------------ */
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0 22px;
+  margin: 0;
+  padding: 2px 0 4px;
+}
+.facts__key {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding-top: 9px;
+  border-top: 1px solid var(--border);
+}
+.facts__val {
+  margin: 0 0 9px;
+  font-size: 1.02rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ------------------------------------------------------------------ */
 /* Progress & charts                                                  */
 /* ------------------------------------------------------------------ */
 

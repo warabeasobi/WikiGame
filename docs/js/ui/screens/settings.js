@@ -305,7 +305,7 @@ registerScreen('settings', (ctx) => {
     modal({
       title: 'Offline & service worker',
       body: el('div', {}, [
-        el('p', { text: navigator.onLine ? 'You are online.' : 'You are offline — cached content still works.' }),
+        el('p', { text: navigator.onLine ? 'You are online.' : 'You are offline. Cached content still works.' }),
         el('p', { text: `Service worker: ${reg ? 'active' : (navigator.serviceWorker ? 'registered/controlling not yet' : 'unsupported in this browser')}` }),
         el('p', { class: 'muted', text: 'The app shell (HTML/CSS/JS/manifest/icons) is cached for offline use. Wikipedia articles are cached individually as you visit them.' }),
       ]),

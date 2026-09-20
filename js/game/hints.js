@@ -94,7 +94,7 @@ export async function buildHint(ctx) {
     const key = distance === 1 ? 'hint.distance1' : distance === 2 ? 'hint.distance2' : distance === Infinity ? 'hint.distance3' : 'hint.unknown';
     const text = distance === 1 ? 'The target is directly linked from here!'
       : distance === 2 ? 'The target is within 2 clicks of here.'
-        : distance === Infinity ? 'The target is 3 or more clicks away.' : 'Distance unknown — explore to find out.';
+        : distance === Infinity ? 'The target is 3 or more clicks away.' : 'Distance unknown. Explore to find out.';
     return { type, textKey: key, data: {}, fallbackText: text, detail: { distance } };
   }
 
@@ -109,7 +109,7 @@ export async function buildHint(ctx) {
         type,
         textKey: 'hint.bridge',
         data: { title: target, reason: 'it links straight to the target' },
-        fallbackText: `Try: ${target} — it links straight to the target`,
+        fallbackText: `Try: ${target} (it links straight to the target)`,
         detail: { title: target, reasonKey: 'hint.reasonLinked' },
       };
     }
@@ -124,7 +124,7 @@ export async function buildHint(ctx) {
             type,
             textKey: 'hint.bridge',
             data: { title: candidate.link, reason: 'a short path to the target runs through it' },
-            fallbackText: `Try: ${candidate.link} — a short path to the target runs through it`,
+            fallbackText: `Try: ${candidate.link} (a short path to the target runs through it)`,
             detail: { title: candidate.link, reasonKey: 'hint.reasonShort', confidence: 'high' },
           };
         }
@@ -136,14 +136,14 @@ export async function buildHint(ctx) {
     if (!best || best.score <= 0) {
       const info = await getPageInfo(lang, [target], { signal }).catch(() => ({}));
       const cats = cleanCategories((Object.values(info)[0] || {}).categories || []);
-      const suggestion = cats.length ? `Look for links about: ${cats.slice(0, 2).join(', ')}` : 'No strong link candidates found — try a broader topic.';
+      const suggestion = cats.length ? `Look for links about: ${cats.slice(0, 2).join(', ')}` : 'No strong link candidates found. Try a broader topic.';
       return { type, textKey: 'powerup.radarUnknown', data: {}, fallbackText: suggestion };
     }
     return {
       type,
       textKey: 'hint.bridge',
       data: { title: best.link, reason: 'it shares context with the target' },
-      fallbackText: `Try: ${best.link} — it shares context with the target`,
+      fallbackText: `Try: ${best.link} (it shares context with the target)`,
       detail: { title: best.link, reasonKey: 'hint.reasonRelated', confidence: 'medium' },
     };
   }

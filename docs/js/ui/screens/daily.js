@@ -105,9 +105,9 @@ registerScreen('daily', (ctx) => {
     /* Personal result */
     const resultTiles = el('div', { class: 'grid grid--tiles' }, [
       statTile({ label: t('daily.attempts'), value: String(result ? result.attempts : 0), icon: '🔁' }),
-      statTile({ label: t('daily.bestTime'), value: result && result.bestTimeMs ? formatTime(result.bestTimeMs) : '—', icon: '⏱' }),
-      statTile({ label: t('daily.bestClicks'), value: result && result.bestClicks !== null && result.bestClicks !== undefined ? String(result.bestClicks) : '—', icon: '🖱️' }),
-      statTile({ label: t('daily.bestScore'), value: result && result.bestScore ? formatNumber(result.bestScore, uiLocale()) : '—', icon: '🏅' }),
+      statTile({ label: t('daily.bestTime'), value: result && result.bestTimeMs ? formatTime(result.bestTimeMs) : '-', icon: '⏱' }),
+      statTile({ label: t('daily.bestClicks'), value: result && result.bestClicks !== null && result.bestClicks !== undefined ? String(result.bestClicks) : '-', icon: '🖱️' }),
+      statTile({ label: t('daily.bestScore'), value: result && result.bestScore ? formatNumber(result.bestScore, uiLocale()) : '-', icon: '🏅' }),
       statTile({ label: t('stats.currentStreak'), value: String(dailyStreak.current), icon: '🔥' }),
       statTile({ label: t('stats.longestStreak'), value: String(dailyStreak.longest), icon: '🏆' }),
     ]);
@@ -149,7 +149,7 @@ registerScreen('daily', (ctx) => {
     if (showArchive) {
       archiveBody.push(el('ul', { class: 'archive-list' }, archive.map((ch) => el('li', { class: 'archive-row' }, [
         el('span', { class: 'archive-row__date', text: ch.dateKey }),
-        el('span', { class: 'archive-row__pair', text: ch.error ? '—' : `${ch.start} → ${ch.target}` }),
+        el('span', { class: 'archive-row__pair', text: ch.error ? '-' : `${ch.start} → ${ch.target}` }),
         ch.difficulty ? difficultyBadge(ch.difficulty) : null,
         button({
           label: t('bookmarks.playChallenge'),

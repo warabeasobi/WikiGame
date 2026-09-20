@@ -80,7 +80,7 @@ registerScreen('results', (ctx) => {
     /* PB comparison ------------------------------------------------- */
     if (completed && comparison) {
       const rows = [];
-      const fmt = (v, kind) => (v === null || v === undefined ? '—' : kind === 'time' ? formatTime(v) : formatNumber(v, locale));
+      const fmt = (v, kind) => (v === null || v === undefined ? '-' : kind === 'time' ? formatTime(v) : formatNumber(v, locale));
       const pb = comparison.personalBest;
       const prev = comparison.previousBest;
       const metrics = [

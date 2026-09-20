@@ -63,7 +63,6 @@ export class Router {
       onClick: () => this.back(),
     });
     const brand = el('button', { class: 'app-header__brand', type: 'button', onClick: () => this.navigate('home') }, [
-      el('span', { class: 'app-header__logo', text: '🏁', 'aria-hidden': 'true' }),
       el('span', { class: 'app-header__name', text: t('app.short') }),
     ]);
     const status = el('span', { class: 'app-header__status', id: 'net-status' });
@@ -72,7 +71,7 @@ export class Router {
       type: 'button',
       title: t('settings.theme'),
       'aria-label': t('settings.theme'),
-      text: s.theme === 'dark' ? '🌙' : s.theme === 'light' ? '☀️' : '🖥',
+      text: s.theme === 'dark' ? 'Dark' : s.theme === 'light' ? 'Light' : 'Auto',
       onClick: () => {
         const order = ['system', 'light', 'dark'];
         const next = order[(order.indexOf(Settings.get('theme')) + 1) % order.length];
@@ -101,7 +100,7 @@ export class Router {
       type: 'button',
       title: t('settings.installApp'),
       'aria-label': t('settings.installApp'),
-      text: '📲',
+      text: 'Install',
       onClick: () => this.promptInstall(),
     });
     this.installBtn = installBtn;
@@ -120,7 +119,6 @@ export class Router {
         'aria-current': this.currentId === item.id ? 'page' : null,
         onClick: () => this.navigate(item.id),
       }, [
-        el('span', { class: 'app-nav__icon', text: item.icon, 'aria-hidden': 'true' }),
         el('span', { class: 'app-nav__label', text: t(item.labelKey) }),
       ]);
       this.nav.appendChild(btn);
@@ -131,7 +129,7 @@ export class Router {
     const node = $('#net-status', this.header);
     if (!node) return;
     const online = isOnline();
-    node.textContent = online ? '' : `📴 ${t('common.offline')}`;
+    node.textContent = online ? '' : t('common.offline');
     node.classList.toggle('is-offline', !online);
     document.body.classList.toggle('is-offline', !online);
   }
@@ -274,13 +272,13 @@ export class Router {
     window.addEventListener('appinstalled', () => {
       this.deferredInstall = null;
       if (this.installBtn) this.installBtn.classList.add('is-hidden');
-      notify.success(t('home.installed'), { icon: '📲' });
+      notify.success(t('home.installed'));
     });
   }
 
   async promptInstall() {
     if (!this.deferredInstall) {
-      notify.info(t('settings.installHint'), { icon: '📲', duration: 6000 });
+      notify.info(t('settings.installHint'), { duration: 6000 });
       return false;
     }
     this.deferredInstall.prompt();
@@ -296,8 +294,8 @@ export class Router {
   /* ---------------------------------------------------------------- */
 
   bindGlobal() {
-    window.addEventListener('online', () => { this.updateStatus(); notify.success(t('common.online'), { icon: '🌐', duration: 1800 }); });
-    window.addEventListener('offline', () => { this.updateStatus(); notify.warn(t('common.offlineNotice'), { icon: '📴', duration: 5000 }); });
+    window.addEventListener('online', () => { this.updateStatus(); notify.success(t('common.online'), { duration: 1800 }); });
+    window.addEventListener('offline', () => { this.updateStatus(); notify.warn(t('common.offlineNotice'), { duration: 5000 }); });
 
     const mq = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
     if (mq && mq.addEventListener) mq.addEventListener('change', () => { if (Settings.get('theme') === 'system') this.applyTheme(); });

@@ -75,17 +75,26 @@ suite('app boot', () => {
     assert($('#app').children.length >= 3, 'shell built (header + viewport + nav)');
     assert(text('.hero__title'), 'hero rendered');
     assert($$('.app-nav__item').length === 7, 'bottom navigation has 7 entries');
-    assert($$('.mode-card').length >= 6, 'mode cards rendered');
     assertEqual(errors.length, 0, `boot produced console errors: ${errors.join(' | ')}`);
+  });
+
+  test('home stays sparse: no duplicate mode grid, few cards', async () => {
+    // The seven modes live behind the Play tab. A grid of them on home just
+    // duplicates the bottom nav and made the screen read as cluttered.
+    assertEqual($$('.mode-card').length, 0, 'home must not re-list the modes');
+    assert($$('.hero__chip').length === 0, 'no chip cluster in the hero');
+    const cards = $$('.card', $('#app-viewport'));
+    assert(cards.length <= 3, `home should show at most 3 cards, found ${cards.length}`);
+    assert($('.status-strip'), 'status facts render as a strip, not a card');
+    assert($$('.status-item').length >= 4, 'status strip carries the quick facts');
   });
 
   test('the daily teaser resolves to a real deterministic challenge', async () => {
     const teaser = await waitFor(() => {
-      const node = $('#daily-teaser');
-      return node && !/Loading|Memuat/.test(node.textContent) ? node : null;
+      const node = $('.daily-teaser__body, .daily-teaser__done');
+      return node && node.textContent.trim().length > 3 ? node : null;
     }, { label: 'daily teaser' });
     const txt = teaser.textContent.trim();
-    assert(txt.length > 3, 'teaser filled in');
     assert(!/undefined|NaN|\[object/.test(txt), `teaser looks broken: ${txt}`);
   });
 

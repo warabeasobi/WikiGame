@@ -122,7 +122,7 @@ export function formatDurationWords(ms) {
 }
 
 export function formatRelative(ts, lang = 'en') {
-  if (!ts) return '—';
+  if (!ts) return '-';
   const diff = Date.now() - ts;
   const mins = Math.round(diff / 60000);
   const rtf = typeof Intl !== 'undefined' && Intl.RelativeTimeFormat ? new Intl.RelativeTimeFormat(lang, { numeric: 'auto' }) : null;

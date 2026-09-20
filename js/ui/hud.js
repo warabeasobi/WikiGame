@@ -42,38 +42,33 @@ export class Hud {
 
     const clicksValue = el('strong', { class: 'hud__chip-value', text: '0' });
     const clicksChip = el('button', { class: 'hud__chip', type: 'button', title: t('game.clicks'), onClick: () => this.onAction('toggle-route') }, [
-      el('span', { class: 'hud__chip-icon', text: '🖱️', 'aria-hidden': 'true' }),
       clicksValue,
       el('span', { class: 'hud__chip-label', text: t('game.clicks') }),
     ]);
 
     const streakValue = el('strong', { class: 'hud__chip-value', text: '0' });
     const streakChip = el('div', { class: 'hud__chip hud__chip--streak', title: t('common.streak') }, [
-      el('span', { class: 'hud__chip-icon', text: '🔥', 'aria-hidden': 'true' }),
       streakValue,
     ]);
 
     const stageChip = el('div', { class: 'hud__chip hud__chip--stage is-hidden' }, [
-      el('span', { class: 'hud__chip-icon', text: '♾️', 'aria-hidden': 'true' }),
       el('strong', { class: 'hud__chip-value', text: '1' }),
     ]);
 
     const hintBtn = el('button', { class: 'icon-btn hud__action', type: 'button', title: t('game.hint'), 'aria-label': t('game.hint'), onClick: () => this.onAction('hint') }, [
-      el('span', { text: '💡', 'aria-hidden': 'true' }),
       el('span', { class: 'hud__action-badge', text: '0' }),
     ]);
 
     const powerBtn = el('button', { class: 'icon-btn hud__action', type: 'button', title: t('game.powerupsTitle'), 'aria-label': t('game.powerupsTitle'), onClick: () => this.onAction('powerups') }, [
-      el('span', { text: '🧰', 'aria-hidden': 'true' }),
       el('span', { class: 'hud__action-badge', text: '0' }),
     ]);
 
     const pauseBtn = el('button', { class: 'icon-btn hud__action hud__pause', type: 'button', title: t('common.pause'), 'aria-label': t('common.pause'), onClick: () => this.onAction('toggle-pause') }, [
-      el('span', { class: 'hud__pause-icon', text: '⏸', 'aria-hidden': 'true' }),
+      el('span', { class: 'hud__pause-icon', text: 'Pause' }),
     ]);
 
     const expandBtn = el('button', { class: 'icon-btn hud__action hud__expand', type: 'button', title: t('common.preview'), 'aria-label': t('game.target'), onClick: () => this.toggleExpanded() }, [
-      el('span', { text: '⌄', 'aria-hidden': 'true' }),
+      el('span', { text: 'More' }),
     ]);
 
     const row1 = el('div', { class: 'hud__row hud__row--main' }, [
@@ -125,7 +120,7 @@ export class Hud {
     this.expanded = force === null ? !this.expanded : Boolean(force);
     this.el.classList.toggle('is-expanded', this.expanded);
     this.refs.row2.classList.toggle('is-collapsed', !this.expanded);
-    this.refs.expandBtn.querySelector('span').textContent = this.expanded ? '⌃' : '⌄';
+    this.refs.expandBtn.querySelector('span').textContent = this.expanded ? 'Less' : 'More';
     this.refs.expandBtn.setAttribute('aria-expanded', String(this.expanded));
   }
 
@@ -141,7 +136,7 @@ export class Hud {
     r.timerValue.textContent = formatTime(display);
     r.timerValue.classList.toggle('is-low', countdown && display <= 30000);
     r.timerValue.classList.toggle('is-critical', countdown && display <= 10000);
-    r.timerMode.textContent = countdown ? '⏳' : '⏱';
+    r.timerMode.textContent = '';
     const ratio = limitMs ? clamp(state.timer.elapsedMs / limitMs, 0, 1) : clamp(state.timer.elapsedMs / 60000, 0, 1);
     r.timerFill.style.width = `${ratio * 100}%`;
     r.timerFill.classList.toggle('is-low', ratio > 0.7);
@@ -168,13 +163,13 @@ export class Hud {
     r.powerBtn.querySelector('.hud__action-badge').textContent = String(available);
     r.powerBtn.classList.toggle('is-disabled', !state.rules.allowPowerups || available === 0);
 
-    r.pauseBtn.querySelector('.hud__pause-icon').textContent = state.status === 'paused' ? '▶' : '⏸';
+    r.pauseBtn.querySelector('.hud__pause-icon').textContent = state.status === 'paused' ? t('common.resume') : t('common.pause');
     r.pauseBtn.title = state.status === 'paused' ? t('common.resume') : t('common.pause');
 
-    r.startEl.textContent = state.start || '—';
+    r.startEl.textContent = state.start || '-';
     r.startEl.title = state.start || '';
-    r.currentEl.textContent = state.current || '—';
-    r.targetEl.textContent = state.target || '—';
+    r.currentEl.textContent = state.current || '-';
+    r.targetEl.textContent = state.target || '-';
     r.targetEl.title = state.target || '';
 
     // badges
@@ -193,14 +188,14 @@ export class Hud {
     // active effects
     r.effects.innerHTML = '';
     const now = Date.now();
-    if (state.timer.frozen) r.effects.appendChild(el('span', { class: 'effect-chip effect-chip--freeze', text: `🧊 ${t('game.frozen')}` }));
+    if (state.timer.frozen) r.effects.appendChild(el('span', { class: 'effect-chip effect-chip--freeze', text: t('game.frozen') }));
     for (const p of powerupsForMode(state.mode)) {
       if (isPowerupActive(pu, p.id, now)) {
         r.effects.appendChild(el('span', { class: 'effect-chip', text: `${p.icon} ${t(p.labelKey)}` }));
       }
     }
     if (state.hintTypesUsed && state.hintTypesUsed.length) {
-      r.effects.appendChild(el('span', { class: 'effect-chip effect-chip--hint', text: `💡 ${state.hintsUsed}` }));
+      r.effects.appendChild(el('span', { class: 'effect-chip effect-chip--hint', text: `${t('common.hints')} ${state.hintsUsed}` }));
     }
   }
 

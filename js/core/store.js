@@ -16,7 +16,7 @@ function probe() {
     storageAvailable = true;
   } catch {
     storageAvailable = false;
-    console.warn('[store] localStorage unavailable — using in-memory storage for this session.');
+    console.warn('[store] localStorage unavailable : using in-memory storage for this session.');
   }
   return storageAvailable;
 }
@@ -63,7 +63,7 @@ export function readJson(key, fallback = null) {
   if (raw === null) return fallback;
   const parsed = safeJsonParse(raw, undefined);
   if (parsed === undefined) {
-    console.warn(`[store] corrupt JSON in "${key}" — falling back to defaults`);
+    console.warn(`[store] corrupt JSON in "${key}" : falling back to defaults`);
     removeRaw(key);
     return fallback;
   }

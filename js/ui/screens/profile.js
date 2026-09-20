@@ -68,9 +68,9 @@ registerScreen('profile', (ctx) => {
       body: [
         el('div', { class: 'grid grid--tiles' }, [
           statTile({ label: t('profile.totalRuns'), value: formatNumber(s.totalRuns, locale), icon: '🎮' }),
-          statTile({ label: t('profile.bestTime'), value: s.best.timeMs ? formatTime(s.best.timeMs) : '—', icon: '⚡' }),
-          statTile({ label: t('profile.bestScore'), value: s.best.score ? formatNumber(s.best.score, locale) : '—', icon: '🏅' }),
-          statTile({ label: t('profile.favLang'), value: favMeta ? `${favMeta.flag} ${favMeta.label}` : '—', icon: '🌍' }),
+          statTile({ label: t('profile.bestTime'), value: s.best.timeMs ? formatTime(s.best.timeMs) : '-', icon: '⚡' }),
+          statTile({ label: t('profile.bestScore'), value: s.best.score ? formatNumber(s.best.score, locale) : '-', icon: '🏅' }),
+          statTile({ label: t('profile.favLang'), value: favMeta ? `${favMeta.flag} ${favMeta.label}` : '-', icon: '🌍' }),
           statTile({ label: t('stats.longestStreak'), value: String(s.streak.longest), icon: '🏆' }),
           statTile({ label: t('stats.totalPlayTime'), value: formatDurationWords(s.totalPlayMs), icon: '⌛' }),
           statTile({ label: t('stats.completionRate'), value: `${Math.round(s.completionRate * 100)}%`, icon: '📈' }),
