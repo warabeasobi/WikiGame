@@ -1,0 +1,29 @@
+{
+  "name": "wikipedia-speedrun",
+  "version": "1.0.0",
+  "description": "Wikipedia Speedrun - a Wikipedia navigation puzzle game (PWA)",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "node tests/run.mjs",
+    "test:ui": "node tests/ui.test.mjs",
+    "test:all": "node tests/run.mjs --with-ui",
+    "smoke": "node tests/smoke.mjs",
+    "i18n": "node tools/check-i18n.mjs",
+    "pages": "node tools/prepare-pages.mjs",
+    "serve": "python3 -m http.server 8080",
+    "serve:test": "python3 -m http.server 8138 --bind 127.0.0.1",
+    "data": "python3 tools/build_data.py",
+    "icons": "python3 tools/make_icons.py"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "jsdom": "^24.1.3"
+  },
+  "private": true
+}

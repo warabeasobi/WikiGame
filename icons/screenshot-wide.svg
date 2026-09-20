@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" role="img" aria-label="Wikipedia Speedrun screenshot">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#5b9bff"/>
+      <stop offset="1" stop-color="#2c62d6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="#f6f7fb"/>
+  <rect width="1280" height="72" fill="#ffffff"/>
+  <text x="40" y="47" font-family="-apple-system,Segoe UI,Roboto,sans-serif" font-size="26" font-weight="700" fill="#1a1d24">🏁 Wikipedia Speedrun</text>
+  <text x="40" y="150" font-family="-apple-system,Segoe UI,Roboto,sans-serif" font-size="46" font-weight="800" fill="#1a1d24">Wikipedia is the map.</text>
+  <text x="40" y="205" font-family="-apple-system,Segoe UI,Roboto,sans-serif" font-size="46" font-weight="800" fill="#2c62d6">Hyperlinks are the roads.</text>
+  <rect x="40" y="250" width="1180" height="150" rx="20" fill="#ffffff" stroke="#e2e5ee"/>
+  <text x="70" y="300" font-family="-apple-system,Segoe UI,Roboto,sans-serif" font-size="22" fill="#6b7280">TIME</text>
+  <text x="70" y="356" font-family="-apple-system,Segoe UI,Roboto,sans-serif" font-size="54" font-weight="800" fill="#1a1d24">01:42.34</text>
+  <text x="360" y="300" font-family="-apple-system,Segoe UI,Roboto,sans-serif" font-size="22" fill="#6b7280">CLICKS</text>
+  <text x="360" y="356" font-family="-apple-system,Segoe UI,Roboto,sans-serif" font-size="54" font-weight="800" fill="#1a1d24">7</text>
+  <text x="600" y="300" font-family="-apple-system,Segoe UI,Roboto,sans-serif" font-size="22" fill="#6b7280">SCORE</text>
+  <text x="600" y="356" font-family="-apple-system,Segoe UI,Roboto,sans-serif" font-size="54" font-weight="800" fill="#2c62d6">8,420</text>
+  <text x="900" y="300" font-family="-apple-system,Segoe UI,Roboto,sans-serif" font-size="22" fill="#6b7280">RATING</text>
+  <text x="900" y="360" font-family="-apple-system,Segoe UI,Roboto,sans-serif" font-size="44" fill="#d9a520">★★★★★</text>
+  <rect x="40" y="430" width="1180" height="230" rx="20" fill="#ffffff" stroke="#e2e5ee"/>
+  <text x="70" y="480" font-family="-apple-system,Segoe UI,Roboto,sans-serif" font-size="24" font-weight="700" fill="#1a1d24">Your route</text>
+  <g font-family="-apple-system,Segoe UI,Roboto,sans-serif" font-size="22" fill="#4b5261">
+    <text x="70" y="528">Banana</text>
+    <text x="70" y="566">↓</text>
+    <text x="70" y="604">Musaceae</text>
+    <text x="70" y="642">↓</text>
+    <text x="230" y="528">Flowering plant</text>
+    <text x="230" y="566">↓</text>
+    <text x="230" y="604">Fruit</text>
+    <text x="230" y="642">🎯 target</text>
+  </g>
+  <rect x="820" y="500" width="370" height="130" rx="16" fill="#eef0f6"/>
+  <text x="850" y="546" font-family="-apple-system,Segoe UI,Roboto,sans-serif" font-size="20" fill="#6b7280">Difficulty</text>
+  <text x="850" y="590" font-family="-apple-system,Segoe UI,Roboto,sans-serif" font-size="28" font-weight="700" fill="#f0883e">🔥 Hard</text>
+  <rect x="40" y="680" width="0" height="0" fill="url(#bg)"/>
+</svg>
