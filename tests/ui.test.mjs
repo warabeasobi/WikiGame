@@ -71,6 +71,7 @@ suite('app boot', () => {
     assert(WSR, 'window.WSR debug API is exposed');
     assertEqual(WSR.ready, true, 'boot completed');
     assert(router.currentId === 'home', `expected home, got ${router.currentId}`);
+    assert(!document.getElementById('boot'), 'the boot splash must be removed, not left covering the app');
     assert($('#app').children.length >= 3, 'shell built (header + viewport + nav)');
     assert(text('.hero__title'), 'hero rendered');
     assert($$('.app-nav__item').length === 7, 'bottom navigation has 7 entries');

@@ -30,6 +30,9 @@ import './ui/screens/daily.js';
 export async function boot({ rootId = 'app', autoStart = true } = {}) {
   const root = document.getElementById(rootId);
   if (!root) throw new Error(`#${rootId} not found`);
+  // The boot splash lives inside #app so it paints before the modules load.
+  const splash = document.getElementById('boot');
+  if (splash) splash.remove();
 
   /* --- storage ---------------------------------------------------- */
   Settings.init();
