@@ -104,6 +104,13 @@ pnpm build      # type-check, then bundle to dist/
 pnpm preview    # serve the build
 ```
 
+## Deploying
+
+GitHub Pages serves this repository from `main:/docs` (legacy Pages), so `pnpm build` writes the
+bundled app straight into `docs/` and the folder is committed with the source. `base` is `./` and
+routing is hash-based, so the build works from the `/WikiGame/` subpath without extra
+configuration. `.nojekyll` is emitted with the build so Pages does not run Jekyll over it.
+
 ## Testing
 
 ```sh

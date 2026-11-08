@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="id" data-type="software" data-radius="soft" data-buttons="arrow" data-motion>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>WikiRace: balapan lewat tautan Wikipedia di browser</title>
+<meta name="description" content="Game browser gratis: mulai dari satu artikel Wikipedia, klik hanya tautan biru, dan capai artikel target dengan klik paling sedikit. Profil tersimpan lokal.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#0a0a0a">
+<meta name="site-kind" content="gaming">
+<meta name="page-type" content="software">
+<script>
+(function () {
+  var d = document.documentElement, t = null;
+  try { t = localStorage.getItem('wr-theme'); } catch (e) {}
+  if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  d.setAttribute('data-theme', t);
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=SUSE:wght@400..700&family=JetBrains+Mono:wght@400..500&display=swap" rel="stylesheet">
+<link rel="icon" href="./favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="./kit/system.css">
+<link rel="stylesheet" href="./kit/ui/cards.css">
+<link rel="stylesheet" href="./kit/motion/motion.css">
+<link rel="stylesheet" href="./kit/backgrounds/backgrounds.css">
+<link rel="stylesheet" href="./kit/layout/layout.css">
+<link rel="stylesheet" href="./kit/icons/icon.css">
+<link rel="stylesheet" href="./kit/diagrams/diagram.css">
+<link rel="stylesheet" href="./kit/moments/marquee-row/moment.css">
+<script>document.documentElement.classList.add('m-enter');setTimeout(function(){document.documentElement.classList.add('m-enter-done')},700)</script>
+<script src="./kit/backgrounds/backgrounds.js"></script>
+<script>document.documentElement.classList.add('mo-js');setTimeout(function(){document.documentElement.classList.add('mo-safe')},2500)</script>
+  <script type="module" crossorigin src="./assets/index-PPMCIfnR.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-B6l9yi8j.css">
+</head>
+<body>
+<div id="root"></div>
+<noscript>
+  <div style="padding:24px;font-family:sans-serif">
+    <h1>Butuh JavaScript</h1>
+    <p>WikiRace adalah game yang berjalan di browser. Aktifkan JavaScript dulu, ya.</p>
+  </div>
+</noscript>
+<script type="module" src="./kit/system.js"></script>
+<script type="module" src="./kit/motion/motion.js"></script>
+<script type="module" src="./kit/layout/layout.js"></script>
+<script type="module" src="./kit/diagrams/mount.js"></script>
+</body>
+</html>
