@@ -129,12 +129,24 @@ export function RoutePicker({ mode, initialFrom = '', initialTo = '', busy, onLa
   const [to, setTo] = useState(initialTo);
   const [error, setError] = useState<string | null>(null);
   const [working, setWorking] = useState(false);
+  const formRef = useRef<HTMLFormElement | null>(null);
 
   useEffect(() => {
     setFrom(initialFrom);
     setTo(initialTo);
     setError(null);
   }, [initialFrom, initialTo, mode]);
+
+  /* The picker opens below the mode cards, usually past the fold: bring it into view and put the
+   * caret in the first empty field so picking a mode visibly does something. */
+  useEffect(() => {
+    const form = formRef.current;
+    if (!form) return;
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    form.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth', block: 'center' });
+    const field = form.querySelector<HTMLInputElement>(initialFrom ? '#wr-to' : '#wr-from');
+    field?.focus({ preventScroll: true });
+  }, [mode, initialFrom]);
 
   const submit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -162,7 +174,7 @@ export function RoutePicker({ mode, initialFrom = '', initialTo = '', busy, onLa
   };
 
   return (
-    <form className="wr-pick" id="wr-pick" autoComplete="off" aria-label="Pilih rute" onSubmit={submit}>
+    <form className="wr-pick" id="wr-pick" ref={formRef} autoComplete="off" aria-label="Pilih rute" onSubmit={submit}>
       <h3 id="wr-pick-h">{mode === 'trial' ? 'Time trial: dari mana ke mana?' : 'Free run: dari mana ke mana?'}</h3>
       <p className="wr-pick__sub">Ketik judul artikel Wikipedia bahasa Indonesia, lalu pilih dari saran.</p>
       <div className="wr-pick__row">
