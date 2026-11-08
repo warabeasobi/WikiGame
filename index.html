@@ -1,65 +1,50 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="light" data-skin="classic">
+<!doctype html>
+<html lang="id" data-type="software" data-radius="soft" data-buttons="arrow" data-motion>
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=5">
-<title>Wikipedia Speedrun — navigate Wikipedia, reach the target</title>
-<meta name="description" content="Wikipedia Speedrun is a navigation puzzle game: travel from a start article to a target article using only Wikipedia hyperlinks. 7 modes, daily challenge, achievements, stats — installable as an app.">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>WikiRace: balapan lewat tautan Wikipedia di browser</title>
+<meta name="description" content="Game browser gratis: mulai dari satu artikel Wikipedia, klik hanya tautan biru, dan capai artikel target dengan klik paling sedikit. Profil tersimpan lokal.">
 <meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#f6f7fb">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="Speedrun">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="format-detection" content="telephone=no">
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="icons/icon-180.png">
-<link rel="mask-icon" href="icons/icon.svg" color="#4c8dff">
-<link rel="stylesheet" href="css/base.css">
-<link rel="stylesheet" href="css/components.css">
-<link rel="stylesheet" href="css/article.css">
-<style>
-  /* Critical boot styles: paint something sensible before CSS/modules load. */
-  html,body{margin:0;background:#f6f7fb;color:#1a1d24;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
-  @media (prefers-color-scheme:dark){html,body{background:#0d1117;color:#e6edf3}}
-  #boot{min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;text-align:center;padding:24px}
-  #boot h1{font-size:1.25rem;margin:0;font-weight:700}
-  #boot p{margin:0;color:#6b7280;font-size:.9rem;max-width:36ch}
-  .boot-spinner{width:30px;height:30px;border-radius:50%;border:3px solid rgba(128,128,128,.25);border-top-color:#4c8dff;animation:bootspin .9s linear infinite}
-  @keyframes bootspin{to{transform:rotate(360deg)}}
-</style>
+<meta name="theme-color" content="#0a0a0a">
+<meta name="site-kind" content="gaming">
+<meta name="page-type" content="software">
+<script>
+(function () {
+  var d = document.documentElement, t = null;
+  try { t = localStorage.getItem('wr-theme'); } catch (e) {}
+  if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+  d.setAttribute('data-theme', t);
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=SUSE:wght@400..700&family=JetBrains+Mono:wght@400..500&display=swap" rel="stylesheet">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/kit/system.css">
+<link rel="stylesheet" href="/kit/ui/cards.css">
+<link rel="stylesheet" href="/kit/motion/motion.css">
+<link rel="stylesheet" href="/kit/backgrounds/backgrounds.css">
+<link rel="stylesheet" href="/kit/layout/layout.css">
+<link rel="stylesheet" href="/kit/icons/icon.css">
+<link rel="stylesheet" href="/kit/diagrams/diagram.css">
+<link rel="stylesheet" href="/kit/moments/marquee-row/moment.css">
+<script>document.documentElement.classList.add('m-enter');setTimeout(function(){document.documentElement.classList.add('m-enter-done')},700)</script>
+<script src="/kit/backgrounds/backgrounds.js"></script>
+<script>document.documentElement.classList.add('mo-js');setTimeout(function(){document.documentElement.classList.add('mo-safe')},2500)</script>
 </head>
-<body class="is-booting">
-
-<div id="app">
-  <div id="boot" role="status" aria-live="polite">
-    <div class="boot-spinner" aria-hidden="true"></div>
-    <h1>Wikipedia Speedrun</h1>
-    <p>Wikipedia is the map. Hyperlinks are the roads. Loading the game…</p>
-  </div>
-</div>
-
+<body>
+<div id="root"></div>
 <noscript>
   <div style="padding:24px;font-family:sans-serif">
-    <h1>JavaScript required</h1>
-    <p>Wikipedia Speedrun is a client-side game. Please enable JavaScript to play.</p>
+    <h1>Butuh JavaScript</h1>
+    <p>WikiRace adalah game yang berjalan di browser. Aktifkan JavaScript dulu, ya.</p>
   </div>
 </noscript>
-
-<script type="module" src="js/main.js"></script>
-<script>
-  // Safety net: `is-booting` hides the body until boot() finishes, and the
-  // splash only leaves if boot() runs. If a module fails to load, neither
-  // happens and the user stares at a blank page. Reveal something instead.
-  setTimeout(function () {
-    var splash = document.getElementById('boot');
-    if (splash && splash.isConnected) {
-      document.body.classList.remove('is-booting');
-      splash.querySelector('p').textContent =
-        'Still starting up… check your connection, then reload.';
-    }
-  }, 8000);
-</script>
+<script type="module" src="/src/main.tsx"></script>
+<script type="module" src="/kit/system.js"></script>
+<script type="module" src="/kit/motion/motion.js"></script>
+<script type="module" src="/kit/layout/layout.js"></script>
+<script type="module" src="/kit/diagrams/mount.js"></script>
 </body>
 </html>
