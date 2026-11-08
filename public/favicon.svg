@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" role="img" aria-label="WikiRace">
+  <rect width="24" height="24" rx="5" fill="#0a0a0a"/>
+  <circle cx="7" cy="7" r="3.1" fill="#b11226"/>
+  <circle cx="17" cy="7" r="3.1" fill="#efefef"/>
+  <circle cx="7" cy="17" r="3.1" fill="#efefef"/>
+  <path d="M16.4 10.6 7.6 13.4" stroke="#b11226" stroke-width="1.6" stroke-linecap="round"/>
+</svg>
