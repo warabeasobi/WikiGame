@@ -296,3 +296,50 @@ html:not([data-theme="light"]) .wr-history__rank { color: color-mix(in oklab, va
   .wr-history li, .wr-bag li { grid-template-columns: auto minmax(0, 1fr); }
   .wr-history li .muted, .wr-bag li .muted { grid-column: 1 / -1; text-align: left; }
 }
+
+/* Profile dashboard: KPI tiles, a chart card and a level meter, all on real numbers. */
+.wr-dash { align-items: start; }
+.wr-dash .card { display: flex; flex-direction: column; gap: var(--s-3); }
+.wr-dash .t-label { margin: 0; }
+.wr-tile__v {
+  margin: 0;
+  font: 500 clamp(34px, 3vw + 20px, 52px) / 1 var(--font-display);
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+.wr-tile__note { margin: 0; font-size: 13.5px; line-height: 1.4; color: var(--muted); }
+.wr-card-head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--s-4); flex-wrap: wrap; }
+.wr-card-head h3 { margin: 0; font: 500 20px/1.2 var(--font-display); letter-spacing: -0.01em; }
+.wr-card-head > span { font-size: 13px; }
+.wr-dash .wr-name, .wr-dash .wr-profile { margin: 0; }
+
+.wr-chart { display: flex; flex-direction: column; gap: var(--s-2); }
+.wr-chart__plot {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: clamp(140px, 18vh, 220px);
+  padding-top: var(--s-3);
+  border-bottom: 1px solid var(--line-strong);
+}
+.wr-chart__bar {
+  flex: 1 1 0;
+  min-width: 4px;
+  border-radius: 3px 3px 0 0;
+  background: var(--accent);
+  opacity: .82;
+}
+.wr-chart__axis { display: flex; justify-content: space-between; font: 400 12px var(--font-mono); color: var(--muted); }
+.wr-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+.wr-level { display: flex; align-items: baseline; gap: var(--s-3); margin: 0; }
+.wr-level__n { font: 500 clamp(34px, 3vw + 20px, 52px) / 1 var(--font-display); letter-spacing: -0.03em; }
+.wr-meter { height: 10px; border-radius: 999px; background: color-mix(in oklab, var(--ink) 14%, var(--surface)); overflow: hidden; }
+.wr-meter > span { display: block; height: 100%; border-radius: 999px; background: var(--accent); }
+.wr-dash__facts { margin-top: var(--s-2); }
+
+/* Four KPI tiles read as a 2x2 on a phone instead of a long single column. */
+@media (max-width: 639px) {
+  .wr-dash > .card.span-3 { grid-column: auto / span 6; }
+  .wr-dash > .card.span-4, .wr-dash > .card.span-8, .wr-dash > .card.span-12 { grid-column: 1 / -1; }
+}
