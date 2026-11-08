@@ -52,7 +52,7 @@ export function ModePage() {
         </div>
         <div className="grid wr-modes">
           {MODE_LIST.map(def => (
-            <article className="card span-4" data-mode={def.id} key={def.id}>
+            <article className={`card span-4${mode === def.id ? ' is-picked' : ''}`} data-mode={def.id} key={def.id}>
               <h3>{def.label}</h3>
               <p>{def.blurb}</p>
               <div className="panel panel--inset">
@@ -69,6 +69,7 @@ export function ModePage() {
               <button
                 className="card__link"
                 type="button"
+                aria-pressed={def.id === 'random' ? undefined : mode === def.id}
                 disabled={busy}
                 onClick={() => (def.id === 'random' ? void playRandom() : setMode(def.id))}
               >

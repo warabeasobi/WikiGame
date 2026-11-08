@@ -224,9 +224,28 @@ html:not([data-theme="light"]) .wr-steps li:last-child { color: color-mix(in okl
 /* the marquee track is nowrap: keep it from widening the section's single column */
 #hasil > .wrap { grid-template-columns: minmax(0, 1fr); }
 .wr-second, #hasil .group { min-width: 0; }
-button.card__link { background: none; border: 0; padding: 0; font-family: inherit; }
-button.card__link:disabled { cursor: default; }
-.wr-chest .card__link { margin-top: auto; padding-top: var(--s-3); }
+/* Card actions are buttons, so they get a button's shape: the kit's secondary outline at button
+   height. A bare text link next to body copy read as a caption, not as something to press. */
+button.card__link {
+  height: var(--btn-h);
+  padding: 0 var(--s-5);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-btn);
+  background: var(--bg);
+  color: var(--ink);
+  font-family: inherit;
+  transition: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+button.card__link:hover:not(:disabled) {
+  background: color-mix(in oklab, var(--bg) 90%, var(--ink));
+  border-color: color-mix(in oklab, var(--ink) 40%, transparent);
+}
+button.card__link:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+button.card__link:disabled { cursor: default; opacity: .55; }
+.wr-chest .card__link { margin-top: auto; }
+/* the mode whose picker is open: accent ring on the card, its button filled */
+.wr-modes .card.is-picked { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+.wr-modes button.card__link[aria-pressed="true"] { background: var(--action); border-color: var(--action); color: var(--action-ink); }
 
 /* hasil on the twelve-column grid */
 @media (min-width: 1024px) {
@@ -255,6 +274,25 @@ button.card__link:disabled { cursor: default; }
   .wr-rank__v { font-size: 110px; }
   .wr-steps { max-height: 190px; }
 }
+/* The kit sizes every main > section to exactly --h screens on wide desktops (a one-screen landing
+   page). App screens hold dynamic content (route picker, race window, dashboard), so a fixed height
+   clips or overlaps them. Use the kit's own tablet rule at every width: at least --h screens, and
+   grow past them. */
+@media (min-width: 1280px) {
+  main > :is(section, .section):not(.hero, .section--hero) {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    min-height: calc(var(--h, 1) * 100vh);
+    min-height: calc(var(--h, 1) * 100svh);
+  }
+  main > :is(section, .section):not(.hero, .section--hero) > :is(.wrap, .container) {
+    flex: 1 0 auto;
+    height: auto;
+    min-height: 0;
+  }
+}
+
 /* App-only additions: markup that lived in sheets or inline blocks in the mockup. */
 .wr-ramal {
   margin-top: var(--s-6);
